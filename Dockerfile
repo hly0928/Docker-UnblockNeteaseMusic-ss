@@ -1,11 +1,8 @@
 FROM alpine:latest AS builder
-ARG v2ray_version=v4.22.1
 ARG unblockneteasemusic_version=master
-RUN apk add --update wget git unzip gcc autoconf make libtool automake zlib-dev openssl asciidoc xmlto libpcre32 libev-dev g++ linux-headers && \
-    mkdir /v2ray && \
-    cd /v2ray && \
-    wget -q -O v2ray.zip https://github.com/v2ray/v2ray-core/releases/download/${v2ray_version}/v2ray-linux-64.zip && \
-    unzip v2ray.zip && \
+RUN apk add --update curl bash wget git unzip gcc autoconf make libtool automake zlib-dev openssl asciidoc xmlto libpcre32 libev-dev g++ linux-headers && \
+	curl -L -s https://install.direct/go.sh >go.sh && \
+    bash ./go.sh && \
     mkdir /simple-obfs && \
     cd /simple-obfs && \
     git clone https://github.com/shadowsocks/simple-obfs.git . && \
@@ -20,7 +17,7 @@ RUN apk add --update wget git unzip gcc autoconf make libtool automake zlib-dev 
 
 FROM alpine:latest
 LABEL maintainer="hly0928 <i@hly0928.com>"
-COPY --from=builder /v2ray/v2ray /v2ray/v2ctl /v2ray/geoip.dat /v2ray/geosite.dat /usr/bin/obfs-server /usr/bin/
+COPY --from=builder /usr/bin/v2ray/ /usr/bin/obfs-server /usr/bin/
 COPY --from=builder /UnblockNeteaseMusic .
 COPY certs/server.crt certs/server.key /certs/
 COPY entrypoint.sh /usr/bin/
