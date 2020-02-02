@@ -1,7 +1,7 @@
 FROM alpine:latest AS builder
 ARG unblockneteasemusic_version=master
 RUN apk add --update curl bash wget git unzip gcc autoconf make libtool automake zlib-dev openssl asciidoc xmlto libpcre32 libev-dev g++ linux-headers && \
-	curl -L -s https://install.direct/go.sh >go.sh && \
+    curl -L -s https://install.direct/go.sh >go.sh && \
     bash ./go.sh && \
     mkdir /simple-obfs && \
     cd /simple-obfs && \
