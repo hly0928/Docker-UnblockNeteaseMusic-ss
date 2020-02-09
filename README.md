@@ -2,7 +2,7 @@
 
 ## 概览
 
-用于快速部署带有 UnblockNeteaseMusic 和 simple-obfs 的 Shadowsocks 服务。
+> 用于快速部署带有 UnblockNeteaseMusic 和 simple-obfs 的 Shadowsocks 服务。
 
 本镜像包含 [UnblockNeteaseMusic](https://github.com/nondanee/UnblockNeteaseMusic), [v2ray-core](https://github.com/v2ray/v2ray-core) 和 [simple-obfs](https://github.com/shadowsocks/simple-obfs)，基于 Alpine Linux 构建。
 
@@ -36,12 +36,12 @@ SS 连接参数：
 
 |Name|Default|Options|Description|
 |---|---|---|---|
-|port|`8080`|`0-65532`|容器内部监听端口，一般无需修改|
-|password|`UnblockNeteaseMusic`||连接密码|
-|method|`aes-256-gcm`|`aes-256-cfb`, `aes-128-cfb`, `chacha20`, `chacha20-ietf`, `aes-256-gcm`, `aes-128-gcm`, `chacha20-ietf-poly1305`|加密方式|
-|obfs|`http`|`none`, `http`, `tls`|混淆方式|
-|failover|||simple-obfs [failover](https://github.com/shadowsocks/simple-obfs#coexist-with-an-actual-web-server) 选项|
-|strict|`false`|`false`, `true`|严格模式，开启后只代理网易云流量|
+|PORT|`8080`|`0-65532`|容器内部监听端口，一般无需修改|
+|PASSWORD|`UnblockNeteaseMusic`||连接密码|
+|METHOD|`aes-256-gcm`|`aes-256-cfb`, `aes-128-cfb`, `chacha20`, `chacha20-ietf`, `aes-256-gcm`, `aes-128-gcm`, `chacha20-ietf-poly1305`|加密方式|
+|OBFS|`http`|`none`, `http`, `tls`|混淆方式|
+|FAILOVER|||simple-obfs [failover](https://github.com/shadowsocks/simple-obfs#coexist-with-an-actual-web-server) 选项|
+|STRICT|`false`|`false`, `true`|严格模式，开启后只代理网易云流量|
 
 例：在 `80` 端口上开启服务，密码为 `F6SVoVe5`，加密方式为 `chacha20-ietf`，不使用混淆
 
@@ -49,9 +49,9 @@ SS 连接参数：
 docker run -d \
            --restart unless-stopped \
            -p 80:8080 \
-           -e password=F6SVoVe5 \
-           -e method=chacha20-ietf \
-           -e obfs=none \
+           -e PASSWORD=F6SVoVe5 \
+           -e METHOD=chacha20-ietf \
+           -e OBFS=none \
            hly0928/unblockneteasemusic-ss
 ```
 
@@ -112,7 +112,7 @@ Default `/etc/v2ray/config.json`:
 }
 ```
 
-*\*如果你希望使用 Vmess 等连接方式，则应当指定环境变量 `obfs=none` 。*
+*\*如果你希望使用 Vmess 等连接方式，则应当指定环境变量 `OBFS=none` 。*
 
 挂载自定义 `config.json`:
 
@@ -120,6 +120,7 @@ Default `/etc/v2ray/config.json`:
 docker run -d \
            --restart unless-stopped \
            -p 8080:8080 \
+           -e OBFS=none \
            -v /path/to/config.json:/etc/v2ray/config.json \
            hly0928/unblockneteasemusic-ss
 ```
