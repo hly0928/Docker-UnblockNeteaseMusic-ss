@@ -35,7 +35,7 @@ ln -sf /certs/server.crt ./server.crt
 ln -sf /certs/server.key ./server.key
 
 if [ "${STRICT}" = "true" ]; then
-  node app.js -p 65534:65533 -e https://music.163.com -s
+  node app.js -p 65534:65533 -e https://music.163.com -o qq kuwo kugou migu -s
 else
-  node app.js -p 65534:65533 -e https://music.163.com
+  node app.js -p 65534:65533 -e https://music.163.com -o qq kuwo kugou migu
 fi
