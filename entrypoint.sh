@@ -2,23 +2,12 @@
 set -e
 
 if [ ! -f "/etc/v2ray/config.json" ]; then
-  cat > /etc/v2ray/config.json << EOF
-{ "log": { "access": "/dev/stdout", "error": "/dev/stderr", "loglevel": "warning" },
-  "inbounds": [{ "port": 65535, "protocol": "shadowsocks", "settings": { "password": "UnblockNeteaseMusic", "method": "aes-256-gcm", "network": "tcp,udp" }}],
-  "outbounds": [{ "protocol": "http", "settings": { "servers": [{ "address": "127.0.0.1", "port": 65534 }]}}] }
-EOF
-
-  if [ -n "${PASSWORD}" ]; then
-    sed -i "s/UnblockNeteaseMusic/${PASSWORD}/" /etc/v2ray/config.json
-  fi
-
-  if [ -n "${METHOD}" ]; then
-    sed -i "s/aes-256-gcm/${METHOD}/" /etc/v2ray/config.json
-  fi
-
   if [ "${OBFS}" = "none" ]; then
-    sed -i "s/65535/${PORT}/" /etc/v2ray/config.json
+    export V2_PORT=${PORT}
+  else
+    export V2_PORT=65535
   fi
+  mo /etc/v2ray/template.json > /etc/v2ray/config.json
 fi
 
 v2ray -config=/etc/v2ray/config.json > /dev/null 2>&1 &

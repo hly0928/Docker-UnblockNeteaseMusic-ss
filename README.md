@@ -4,14 +4,14 @@
 
 > 用于快速部署带有 UnblockNeteaseMusic 和 simple-obfs 的 Shadowsocks 服务。
 
-本镜像包含 [UnblockNeteaseMusic](https://github.com/nondanee/UnblockNeteaseMusic), [v2ray-core](https://github.com/v2ray/v2ray-core) 和 [simple-obfs](https://github.com/shadowsocks/simple-obfs)，基于 Alpine Linux 构建。
+本镜像包含 [UnblockNeteaseMusic](https://github.com/nondanee/UnblockNeteaseMusic), [v2ray-core](https://github.com/v2fly/v2ray-core) 和 [simple-obfs](https://github.com/shadowsocks/simple-obfs)，基于 Alpine Linux 构建。
 
 当前版本：
 - UnblockNeteaseMusic: master branch
 - v2ray-core: v4.23.1
 - simple-obfs: v0.0.5
 
-*\*由于 simple-obfs 已被 deprecated，未来可能会将其移除。*
+*由于 simple-obfs 已被 deprecated，未来可能会将其移除。*
 
 ## 快速开始
 
@@ -74,7 +74,7 @@ docker run -d \
 
 ## 自定义 V2Ray 配置文件
 
-可以修改默认 `/etc/v2ray/config.json` 中的 `inbounds` 部分以使用其他 V2Ray 支持的 [协议](https://www.v2ray.com/chapter_02/02_protocols.html) 连接。
+可以修改默认 `/etc/v2ray/config.json` 中的 `inbounds` 部分以使用其他 V2Ray 支持的 [协议](https://www.v2fly.org/chapter_02/02_protocols.html) 连接。
 
 Default `/etc/v2ray/config.json`:
 
@@ -112,7 +112,7 @@ Default `/etc/v2ray/config.json`:
 }
 ```
 
-*\*如果你希望使用 Vmess 等连接方式，则应当指定环境变量 `OBFS=none` 。*
+*如果你希望使用 Vmess 等连接方式，则应当指定环境变量 `OBFS=none`*
 
 挂载自定义 `config.json`:
 
@@ -124,3 +124,7 @@ docker run -d \
            -v /path/to/config.json:/etc/v2ray/config.json \
            hly0928/unblockneteasemusic-ss
 ```
+
+## 许可
+
+[The MIT License](https://github.com/hly0928/Docker-UnblockNeteaseMusic-ss/blob/master/LICENSE)

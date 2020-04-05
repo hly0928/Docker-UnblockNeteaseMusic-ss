@@ -1,0 +1,31 @@
+{
+  "log": {
+    "access": "/dev/stdout",
+    "error": "/dev/stderr",
+    "loglevel": "warning"
+  },
+  "inbounds": [
+    {
+      "port": {{V2_PORT}},
+      "protocol": "shadowsocks",
+      "settings": {
+        "password": "{{PASSWORD}}",
+        "method": "{{METHOD}}",
+        "network": "tcp,udp"
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "http",
+      "settings": {
+        "servers": [
+          {
+            "address": "127.0.0.1",
+            "port": 65534
+          }
+        ]
+      }
+    }
+  ] 
+}
