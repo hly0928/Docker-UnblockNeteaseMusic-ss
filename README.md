@@ -4,7 +4,7 @@
 
 > 用于快速部署带有 UnblockNeteaseMusic 和 simple-obfs 的 Shadowsocks 服务。
 
-本镜像包含 [UnblockNeteaseMusic](https://github.com/nondanee/UnblockNeteaseMusic), [v2ray-core](https://github.com/v2fly/v2ray-core) 和 [simple-obfs](https://github.com/shadowsocks/simple-obfs)，基于 Alpine Linux 构建。
+本镜像包含 [UnblockNeteaseMusic](https://github.com/nondanee/UnblockNeteaseMusic), [v2ray-core](https://github.com/v2ray/v2ray-core) 和 [simple-obfs](https://github.com/shadowsocks/simple-obfs)，基于 Alpine Linux 构建。
 
 当前版本：
 - UnblockNeteaseMusic: master branch
