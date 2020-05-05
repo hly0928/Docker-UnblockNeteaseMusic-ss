@@ -32,14 +32,15 @@ COPY --from=builder /usr/local/bin/obfs-server /usr/local/bin/
 COPY --from=builder /root/mo /usr/local/bin/
 COPY --from=builder /root/v2ray /root/v2ctl /root/geoip.dat /root/geosite.dat /usr/local/bin/
 COPY --from=builder /UnblockNeteaseMusic .
+COPY entrypoint.sh /usr/local/bin/
 COPY certs/server.crt certs/server.key /certs/
 COPY template.json /etc/v2ray/template.json
-COPY entrypoint.sh /usr/local/bin/
-ENV PORT=8080
-ENV PASSWORD=UnblockNeteaseMusic
-ENV METHOD=aes-256-gcm
-ENV OBFS=http
-ENV STRICT=false
+ENV PORT=8080 \
+    PASSWORD=UnblockNeteaseMusic \
+    METHOD=aes-256-gcm \
+    OBFS=http \
+    STRICT=false \
+    SOURCE="qq kugou kuwo xiami"
 RUN apk add --no-cache bash libev nodejs && \
     rm -f server.crt server.key
 EXPOSE 8080

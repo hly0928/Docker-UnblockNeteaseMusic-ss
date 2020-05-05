@@ -1,4 +1,4 @@
-![](https://img.shields.io/docker/cloud/build/hly0928/unblockneteasemusic-ss?color=%23429be6&style=flat-square)
+![Build Status](https://img.shields.io/docker/cloud/build/hly0928/unblockneteasemusic-ss?color=%23429be6&style=flat-square)
 
 ## 概览
 
@@ -19,7 +19,7 @@
 docker run -d --restart unless-stopped -p 8080:8080 hly0928/unblockneteasemusic-ss
 ```
 
-*(For iOS)* 安装 CA 根证书：[点此](https://raw.githubusercontent.com/hly0928/Docker-UnblockNeteaseMusic-ss/master/certs/ca.crt) 安装
+(For iOS) 安装 CA 根证书：[点此](https://raw.githubusercontent.com/hly0928/Docker-UnblockNeteaseMusic-ss/master/certs/ca.crt) 安装，注意安装后需要到 `设置 > 通用 > 关于 > 证书信任设置` 中打开对该证书的完全信任。
 
 SS 连接参数：
 
@@ -42,6 +42,7 @@ SS 连接参数：
 |OBFS|`http`|`none`, `http`, `tls`|混淆方式|
 |FAILOVER|||simple-obfs [failover](https://github.com/shadowsocks/simple-obfs#coexist-with-an-actual-web-server) 选项|
 |STRICT|`false`|`false`, `true`|严格模式，开启后只代理网易云流量|
+|SOURCE|`qq kugou kuwo xiami`|`baidu`, `joox`, `kugou`, `kuwo`, `migu`, `qq`, `xiami`|自定义音源及搜索顺序|
 
 例：在 `80` 端口上开启服务，密码为 `F6SVoVe5`，加密方式为 `chacha20-ietf`，不使用混淆
 
@@ -55,13 +56,15 @@ docker run -d \
            hly0928/unblockneteasemusic-ss
 ```
 
-## 使用自签证书
+## 高级设置
 
-> 自签证书用于代理 HTTPS 流量，以解决部分音源匹配到却无法播放的问题。
+### 使用自签证书 (For iOS/macOS)
 
-可以直接使用本仓库提供的 [证书](https://github.com/hly0928/Docker-UnblockNeteaseMusic-ss/tree/master/certs)：[点此](https://raw.githubusercontent.com/hly0928/Docker-UnblockNeteaseMusic-ss/master/certs/ca.crt) 安装
+> 自签证书用于代理 HTTPS 流量，以解决 iOS/macOS 平台部分音源匹配到却无法播放的问题（一般显示为「网络不给力」）。
 
-或者参考作者 [@nondanee](https://github.com/nondanee) 给出的 [方法](https://github.com/nondanee/UnblockNeteaseMusic/issues/48#issuecomment-477870013) 签发并安装 CA 根证书，随后使用以下启动命令替换本镜像自带证书：
+可以直接使用本仓库提供的 [证书](https://github.com/hly0928/Docker-UnblockNeteaseMusic-ss/tree/master/certs)：iOS [点此](https://raw.githubusercontent.com/hly0928/Docker-UnblockNeteaseMusic-ss/master/certs/ca.crt) 安装，注意安装后需要到 `设置 > 通用 > 关于 > 证书信任设置` 中打开对该证书的完全信任；macOS 需自行将证书下载并添加到 Keychain 中，随后打开完全信任。
+
+或者参考作者 [@nondanee](https://github.com/nondanee) 给出的 [方法](https://github.com/nondanee/UnblockNeteaseMusic/issues/48#issuecomment-477870013) 自行签发并安装 CA 根证书，随后使用以下启动命令替换内置的服务器证书：
 
 ```bash
 docker run -d \
@@ -72,7 +75,7 @@ docker run -d \
            hly0928/unblockneteasemusic-ss
 ```
 
-## 自定义 V2Ray 配置文件
+### 自定义 V2Ray 配置文件
 
 可以修改默认 `/etc/v2ray/config.json` 中的 `inbounds` 部分以使用其他 V2Ray 支持的 [协议](https://www.v2fly.org/chapter_02/02_protocols.html) 连接。
 
