@@ -110,8 +110,25 @@ Default `/etc/v2ray/config.json`:
           }
         ]
       }
+    },
+    {
+      "protocol": "blackhole",
+      "settings": {},
+      "tag": "block"
     }
-  ] 
+  ],
+  "routing": {
+    "domainStrategy": "IPOnDemand",
+    "rules": [
+      {
+        "type": "field",
+        "ip": [
+          "geoip:private"
+        ],
+        "outboundTag": "block"
+      }
+    ]
+  }
 }
 ```
 
