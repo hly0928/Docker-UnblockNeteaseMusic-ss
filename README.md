@@ -8,7 +8,7 @@
 
 当前版本：
 - UnblockNeteaseMusic: master branch
-- v2ray-core: v4.23.1
+- v2ray-core: v4.23.2
 - simple-obfs: v0.0.5
 
 *由于 simple-obfs 已被 deprecated，未来可能会将其移除。*
