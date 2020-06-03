@@ -1,9 +1,9 @@
 FROM alpine:latest AS builder
 # Define V2Ray version
-ARG V2RAY_VERSION=v4.23.3
+ARG V2RAY_VERSION=4.23.3
 # Define UnblockNeteaseMusic version
 ARG UNBLOCKNETEASEMUSIC_VERSION=master
-# Install build dependencies
+# Install dependencies
 RUN apk update && \
     apk add git wget unzip gcc autoconf make libtool automake zlib-dev openssl asciidoc xmlto libpcre32 libev-dev g++ linux-headers
 # Build simple-obfs
@@ -19,7 +19,7 @@ RUN cd /root && \
     chmod +x mo
 # Download V2Ray
 RUN cd /root && \
-    wget -q -O v2ray.zip https://github.com/v2ray/v2ray-core/releases/download/${V2RAY_VERSION}/v2ray-linux-64.zip && \
+    wget -q -O v2ray.zip https://github.com/v2ray/v2ray-core/releases/download/v${V2RAY_VERSION}/v2ray-linux-64.zip && \
     unzip v2ray.zip
 # Download UnblockNeteaseMusic
 RUN git clone https://github.com/nondanee/UnblockNeteaseMusic.git /UnblockNeteaseMusic && \
