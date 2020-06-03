@@ -1,0 +1,9 @@
+{
+  "Debug": false,
+  "ServeNodes": [
+    "ss2://{{METHOD}}:{{PASSWORD}}@:{{GOST_PORT}}"
+  ],
+  "ChainNodes": [
+    "http://:65534"
+  ]
+}
