@@ -1,6 +1,6 @@
 FROM alpine:latest AS builder
 # Define V2Ray version
-ARG V2RAY_VERSION=4.23.3
+ARG V2RAY_VERSION=4.23.4
 # Define UnblockNeteaseMusic version
 ARG UNBLOCKNETEASEMUSIC_VERSION=master
 # Install dependencies
@@ -19,7 +19,7 @@ RUN cd /root && \
     chmod +x mo
 # Download V2Ray
 RUN cd /root && \
-    wget -q -O v2ray.zip https://github.com/v2ray/v2ray-core/releases/download/v${V2RAY_VERSION}/v2ray-linux-64.zip && \
+    wget -q -O v2ray.zip https://github.com/v2fly/v2ray-core/releases/download/v${V2RAY_VERSION}/v2ray-linux-64.zip && \
     unzip v2ray.zip
 # Download UnblockNeteaseMusic
 RUN git clone https://github.com/nondanee/UnblockNeteaseMusic.git /UnblockNeteaseMusic && \
