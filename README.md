@@ -28,7 +28,7 @@ SS 连接参数：
 |Host|Server IP|
 |Port|`8080`|
 |Password|`UnblockNeteaseMusic`|
-|Method|`chacha20-ietf-poly1305`|
+|Method|`aes-256-gcm`|
 |Obfuscation|`http`|
 |Obfs host|Optional|
 
@@ -38,7 +38,7 @@ SS 连接参数：
 |---|---|---|---|
 |PORT|`8080`|`0-65532`|容器内部监听端口，一般无需修改|
 |PASSWORD|`UnblockNeteaseMusic`||连接密码|
-|METHOD|`AEAD_CHACHA20_POLY1305`|`AEAD_AES_128_GCM`, `AEAD_AES_256_GCM`, `AEAD_CHACHA20_POLY1305`|加密方式|
+|METHOD|`AEAD_AES_256_GCM`|`AEAD_AES_128_GCM`, `AEAD_AES_256_GCM`, `AEAD_CHACHA20_POLY1305`|加密方式|
 |OBFS|`http`|`none`, `http`, `tls`|混淆方式|
 |FAILOVER|||simple-obfs [failover](https://github.com/shadowsocks/simple-obfs#coexist-with-an-actual-web-server) 选项|
 |STRICT|`false`|`false`, `true`|严格模式，开启后只代理网易云流量|
@@ -85,7 +85,7 @@ Default `/etc/gost/gost.json`:
 {
   "Debug": false,
   "ServeNodes": [
-    "ss2://AEAD_CHACHA20_POLY1305:UnblockNeteaseMusic@:65535"
+    "ss2://AEAD_AES_256_GCM:UnblockNeteaseMusic@:65535"
   ],
   "ChainNodes": [
     "http://:65534"

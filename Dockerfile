@@ -38,7 +38,7 @@ COPY certs/server.crt certs/server.key /certs/
 COPY template.json /etc/gost/template.json
 ENV PORT=8080 \
     PASSWORD=UnblockNeteaseMusic \
-    METHOD=AEAD_CHACHA20_POLY1305 \
+    METHOD=AEAD_AES_256_GCM \
     OBFS=http \
     STRICT=false \
     SOURCE="qq kugou kuwo xiami"
