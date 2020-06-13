@@ -37,7 +37,7 @@ COPY certs/server.crt certs/server.key /certs/
 COPY template.json /etc/v2ray/template.json
 ENV PORT=8080 \
     PASSWORD=UnblockNeteaseMusic \
-    METHOD=chacha20-ietf-poly1305 \
+    METHOD=aes-256-gcm \
     OBFS=http \
     STRICT=false \
     SOURCE="qq kugou kuwo xiami"
