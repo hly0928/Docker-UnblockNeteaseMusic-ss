@@ -1,6 +1,6 @@
 FROM alpine:latest AS builder
 # Define V2Ray version
-ARG V2RAY_VERSION=4.28.2
+ARG V2RAY_VERSION=4.29.0
 # Define UnblockNeteaseMusic version
 ARG UNBLOCKNETEASEMUSIC_VERSION=master
 # Install dependencies
